@@ -1,23 +1,13 @@
 from django.shortcuts import render
 from  .models import diseases
-from .models import nongenric_medicines,genric_medicines,patients_register
-
+from .models import nongenric_medicines,genric_medicines
 # Create your views here.
 def homelogin(request):
     type="homepage"
     return render(request,"index.html",{"type":type})
 def patientlogin(request):
-    try:
-        session=request.session['pemail']
-        if session != '':
-            pdetails=patients_register.objects.filter(Email=session)
-            return render(request,"patient_home.html",{"pdetails":pdetails})
-        else:
-            type = request.GET.get("type")
-            return render(request,"index.html",{"type":type})
-    except:
-        type=request.GET.get("type")
-        return render(request,"index.html",{"type":type})
+    type=request.GET.get("type")
+    return render(request,"index.html",{"type":type})
 
 
 def patientregisterpage(request):
@@ -47,23 +37,13 @@ def CheckLogin(request):
     from  .models import patients_register
     cp=patients_register.objects.filter(Email=email,Password=password)
     if cp:
-        request.session['pemail']=email
-        return render(request,"patient_home.html",{"pdetails":cp})
+        dieseases=diseases.objects.all()
+        genric=genric_medicines.objects.all()
+        nongenric=nongenric_medicines.objects.all()
+        return render(request,"patient_home.html",{"pdetails":cp,"diseases":dieseases,"generic":genric,"nongeneric":nongenric})
     else:
         return render(request,"index.html",{"type":"H_patient","message1":"Invalid Details Please Register.."})
 def diseaseslogin(request):
     type=request.GET.get("type")
     return render(request,"index.html",{"type":type})
-def Generic(request):
-    uemail=request.POST.get('generic')
-    pdetails=patients_register.objects.filter(Email=uemail)
-    generic=genric_medicines.objects.all()
-    return render(request,"patient_home.html",{"generic":generic,"pdetails":pdetails})
-def NonGeneric(request):
-    uemail=request.POST.get('ngeneric')
-    pdetails=patients_register.objects.filter(Email=uemail)
-    generic=genric_medicines.objects.all()
-    return render(request,"patient_home.html",{"ngeneric":generic,"pdetails":pdetails})
-def PLogout(request):
-    request.session['pemail']=''
-    return render(request,"index.html")
+
