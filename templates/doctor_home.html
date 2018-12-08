@@ -16,7 +16,7 @@
 						<div class="top">
 							<div class="row">
 								<div class="col-md-6">
-									<div id="colorlib-logo"><a href="/patientlogin/"> E-Health<span>care Advisor</span></a></div>
+									<div id="colorlib-logo"><a href="/doctorlogin/"> E-Health<span>care Advisor</span></a></div>
 								</div>
 								<div class="col-md-3">
 									<div class="num">
@@ -45,9 +45,9 @@
                                     <li><a href="javascript:void(0)" onclick="profile()">View Profile</a></li>
 									<li><a href="javascript:void(0)" onclick="medicines()">View Medicines</a></li>
 									<li><a href="javascript:void(0)" onclick="diseases()">View Dieseases</a></li>
-                                    <li><a href="javascript:void(0)" onclick="doctors()">View Doctors</a></li>
-									<li><a href="javascript:void(0)" onclick="Drequest()">Request Medicines</a></li>
-									<li><a href="/plogout/">LogOut</a></li>
+                                    <li><a href="javascript:void(0)" onclick="patients()">View Patients</a></li>
+									<li><a href="javascript:void(0)" onclick="Prequest()">View Requests</a></li>
+									<li><a href="/dlogout/">LogOut</a></li>
 
 
 
@@ -62,11 +62,11 @@
     </div>
 <div class="container" style="background: #f7ecb5;padding: 20px;">
     <div class="col-md-3">
-        {% if pdetails %}
-         {% for x in pdetails %}
+        {% if ddetails %}
+         {% for x in ddetails %}
              <div class="container" >
-            <img src="{% static 'images/patients/' %}{{ x.Name }}.jpg" width="100" height="100"  style="border:1px solid #0b0b0b;border-radius: 50%">
-             <b><p>Welcome Mr/Mrs<span><font color="green">  {{ x.Name }}</font></span></p></b>
+            <img src="{% static 'images/doctor/' %}{{ x.name }}.jpg" width="100" height="100"  style="border:1px solid #0b0b0b;border-radius: 50%">
+             <b><p>Welcome Mr/Mrs<span><font color="green">  {{ x.name }}</font></span></p></b>
              </div>
         {% endfor %}
         {% endif %}
@@ -76,7 +76,7 @@
         <script>
             function home() {
                 document.getElementById('profile').style.display='none';
-                document.getElementById('doctors').style.display='none';
+                document.getElementById('patients').style.display='none';
 
                 document.getElementById('medicines').style.display='none';
                 document.getElementById('diseases').style.display='none';
@@ -86,43 +86,43 @@
             }
             function profile() {
                 document.getElementById('profile').style.display='block';
-                document.getElementById('doctors').style.display='none';
-                document.getElementById('Drequest').style.display='none';
+                document.getElementById('patients').style.display='none';
+                document.getElementById('Prequest').style.display='none';
+                document.getElementById('diseases').style.display='none';
 
 
                 document.getElementById('medicines').style.display='none';
                 document.getElementById('generic').style.display='none';
                 document.getElementById('nongeneric').style.display='none';
-                document.getElementById('diseases').style.display='none';
 
 
             }
             function medicines() {
                 document.getElementById('medicines').style.display='block';
-                document.getElementById('doctors').style.display='none';
+                document.getElementById('patients').style.display='none';
 
                 document.getElementById('profile').style.display='none';
                 document.getElementById('diseases').style.display='none';
-                document.getElementById('Drequest').style.display='none';
+                document.getElementById('Prequest').style.display='none';
 
 
 
             }
             function diseases() {
                 document.getElementById('diseases').style.display='block';
-                document.getElementById('doctors').style.display='none';
+                document.getElementById('patients').style.display='none';
 
                 document.getElementById('profile').style.display='none';
                 document.getElementById('medicines').style.display='none';
                 document.getElementById('generic').style.display='none';
                 document.getElementById('nongeneric').style.display='none';
-                document.getElementById('Drequest').style.display='none';
+                document.getElementById('Prequest').style.display='none';
 
 
             }
-            function Drequest() {
-                document.getElementById('Drequest').style.display='block';
-                document.getElementById('doctors').style.display='none';
+            function Prequest() {
+                document.getElementById('Prequest').style.display='block';
+                document.getElementById('patients').style.display='none';
 
                 document.getElementById('diseases').style.display='none';
                 document.getElementById('profile').style.display='none';
@@ -132,9 +132,9 @@
 
 
             }
-            function doctors() {
-                document.getElementById('doctors').style.display='block';
-                document.getElementById('Drequest').style.display='none';
+            function patients() {
+                document.getElementById('patients').style.display='block';
+                document.getElementById('Prequest').style.display='none';
                 document.getElementById('diseases').style.display='none';
                 document.getElementById('profile').style.display='none';
                 document.getElementById('medicines').style.display='none';
@@ -142,21 +142,21 @@
                 document.getElementById('nongeneric').style.display='none';
             }
         </script>
-    <div class="col-md-9" id="doctors" style="display: none">
+    <div class="col-md-9" id="patients" style="display: none">
         <table class="table table-responsive table-striped">
     <thead>
     <tr>
-        <th>Doctor Name</th>
-        <th>Doctor Contact</th>
-        <th>Doctor Designation</th>
+        <th>Patient Name</th>
+        <th>Patient Gender</th>
+        <th>Patient Email</th>
     </tr>
     </thead>
     <tbody>
-     {% for x in doctor %}
+     {% for x in patients %}
         <tr>
-            <td>{{ x.name }}</td>
-            <td>{{ x.contact }}</td>
-            <td>{{ x.designation }}</td>
+            <td>{{ x.Name }}</td>
+            <td>{{ x.Gender }}</td>
+            <td>{{ x.Email }}</td>
         </tr>
      {% endfor %}
 
@@ -186,16 +186,16 @@
 
 
 </div>
-    <div class="col-md-9" id="Drequest" style="display: none">
+    <div class="col-md-9" id="Prequest" style="display: none">
             <div class="row form-group">
-                <h2 ><label style="text-transform: uppercase;border-bottom: 4px solid lightskyblue;color: #3f3f3f;" >Discussion With Doctor</label></h2>
+                <h2 ><label style="text-transform: uppercase;border-bottom: 4px solid lightskyblue;color: #3f3f3f;" >Discussion With Patient</label></h2>
                 <div class="col-md-12">
                         <div class="container" id="discussionArea" style="height: 400px">
                             sdfdbsgxc
                         </div>
                     <div class="container" id="discussionpool">
                         <div class="form-group">
-                            <form action="/sendquestion/">
+                            <form action="/sendanswer/">
                                 <textarea class="form-group" id="client" cols="80" rows="2"></textarea><br>
                                 <button class=" btn btn-primary" type="submit" >Send</button>
                             </form>
@@ -321,61 +321,27 @@
             </form>
         </div>
         <div class="col-md-9" id="profile" style="display: none">
-            {% for x in pdetails %}
+            {% for x in ddetails %}
                 <div class="row form-group">
                     <div class="col-md-6">
-                        <label for="name"> Name:<font color="purple"> {{ x.Name}}</font></label>
+                        <label for="name"> Name:<font color="purple"> {{ x.name}}</font></label>
                     </div>
                     <div class="col-md-6">
-                        <label for="age">Age :<font color="purple">  {{ x.Age }}</font></label>
+                        <label for="age">Designation :<font color="purple">  {{ x.designation }}</font></label>
                     </div>
                 </div>
                 <div class="row form-group">
                     <div class="col-md-12">
-                        <label for="name">Patient ID : <font color="purple"> {{ x.Id }}</font></label>
+                        <label for="name">Contact Number : <font color="purple"> {{ x.contact }}</font></label>
                     </div>
                 </div>
                 <div class="row form-group">
                     <div class="col-md-6">
-                        <label for="fname">Gender : <font color="purple"> {{ x.Gender }}</font></label>
+                        <label for="fname">Email : <font color="purple"> {{ x.email }}</font></label>
 
                     </div>
-                    <div class="col-md-6">
-                        <label for="lname">Date Of Birth : <font color="purple"> {{ x.Date_of_birth }}</font></label>
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-md-6">
-                        <label for="contact">Contact No : <font color="purple"> {{ x.Contact }}</font></label>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="occupation">Occupation :<font color="purple">  {{ x.Occupation }}</font></label>
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-md-6">
-                        <label for="height">Height :<font color="purple">  {{ x.Height }}</font></label>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="weight">weight : <font color="purple"> {{ x.Weight }}</font></label>
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-md-12">
-                        <label for="userid">User_Id  :<font color="purple">  {{ x.User_id }}</font></label>
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-md-12">
-                        <label for="message">Email_Id : <font color="purple"> {{ x.Email }}</font></label>
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-md-12">
-                        <label for="message">Address : <font color="purple"> {{ x.Address }}</font></label>
-                    </div>
-                </div>
 
+                </div>
             {% endfor %}
 
         </div>

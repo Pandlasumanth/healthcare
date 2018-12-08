@@ -24,7 +24,15 @@ urlpatterns = [
     path('',TemplateView.as_view(template_name='index.html')),
     path('home/', views.homelogin),
     path('patientlogin/', views.patientlogin),
+    path('doctorlogin/', views.DoctorLogin),
+    path('CheckDoctorLogin/', views.CheckDoctorLogin),
     path('patientregister/', views.patientregisterpage),
     path('patientreg/', views.patientregister),
     path('CheckLogin/', views.CheckLogin),
+    path('generic_medicines/', views.Generic),
+    path('non_generic_medicines/', views.NonGeneric),
+    path('plogout/', views.PLogout),
+    path('dlogout/', views.DLogout),
+    path('view_diseases/', views.DiseasesInfo),
+
 ]

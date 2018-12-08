@@ -5,7 +5,7 @@ from .models import genric_medicines
 from .models import nongenric_medicines
 from .models import patients_register
 from .models import Prescription
-# from .models import EHR
+from .models import doctor
 from .models import Report
 
 
@@ -17,5 +17,5 @@ admin.site.register(genric_medicines)
 admin.site.register(nongenric_medicines)
 admin.site.register(patients_register)
 admin.site.register(Prescription)
-# admin.site.register(EHR)
+admin.site.register(doctor)
 admin.site.register(Report)

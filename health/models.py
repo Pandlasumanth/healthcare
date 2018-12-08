@@ -1,11 +1,11 @@
 from django.db import models
-# class doctor(models.Model):
-#     id=models.IntegerField(primary_key=True)
-#     name=models.CharField(max_length=50)
-#     contact=models.IntegerField()
-#     designation=models.CharField(max_length=100)
-#     email=models.EmailField()
-#     password=models.CharField(max_length=50)
+class doctor(models.Model):
+    id=models.IntegerField(primary_key=True)
+    name=models.CharField(max_length=50)
+    contact=models.IntegerField()
+    designation=models.CharField(max_length=100)
+    email=models.EmailField()
+    password=models.CharField(max_length=50)
 # class kioskmanager(models.Model):
 #     id=models.IntegerField(primary_key=True)
 #     name=models.CharField(max_length=50)
